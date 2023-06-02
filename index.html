@@ -1,0 +1,64 @@
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion de usuarios</title>
+</head>
+
+<body>
+    <header>
+        <h1>Gestion de usuarios</h1>
+    </header>
+    <main>
+        <section>
+        <table id="usuariosTb">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Usuario</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Johan</td>
+                    <td>jmfonseca</td>
+                    <td>
+                        <button onclick="btnModificar()">Modificar</button>
+                    </td>
+                    <td>
+                        <button onclick="btnDelete()">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </section>
+        <section>
+            <form>
+                <label>
+                    <span>Codigo: </span>
+                    <input type="number" name="codigo" maxlength="200" required id="codigo">
+                </label>
+                 <label>
+                    <span>Nombres: </span>
+                    <input type="text" name="nombres" maxlength="150" required id="nombres">
+                </label>
+                 <label>
+                    <span>Apellidos: </span>
+                    <input type="text" name="apellidos" maxlength="200" required id="apellidos">
+                </label>
+                <section>
+                    <button onclick="btnRegistro()">Guardar</button>
+                </section>
+            </form>
+        </section>
+    </main>
+    <footer>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="js/gestionActividades.js"></script>
+    
+</body>
+
+</html>

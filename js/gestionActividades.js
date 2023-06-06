@@ -1,5 +1,18 @@
-
-
+function btnRegistro(){
+    var codigo = document.getElementById('codigo')
+    var nombres = document.getElementById('nombres')
+    var apellidos =  document.getElementById('apellidos')
+    post(codigo.value, nombres.value, apellidos.value)
+    location.reload();
+}
+function btnDelete(id){
+    $.ajax({
+        method: 'delete',//consultar datos
+        url: 'http://localhost:8000/estudiantes/'+id
+    }).done(response=>{
+        alert(response)
+    })
+}
 function post(codigo, nombres, apellidos) {
     $.ajax({
         url: 'http://localhost:8000/estudiantes',
@@ -17,71 +30,45 @@ function post(codigo, nombres, apellidos) {
      console.log(response)
     });
      }
-
-
-function btnRegistro(){
-    var name = document.getElementById('name')
-    var username = document.getElementById('username')
-    var password =  document.getElementById('password')
-    post(name.value, username.value, password.value)
-    location.reload();
-}
-//
-
-function btnDelete(id){
-    $.ajax({
-        method: 'delete',//consultar datos
-        url: 'http://localhost:8000/usuarios/'+id
-    }).done(response=>{
-        alert(response)
-    })
-}
-
-
-
-
-function modificar(usuarioid){
-    idusuariomodificar = usuarioid
-    $.ajax({
-        url: 'http://localhost:8000/usuarios/'+idusuariomodificar,
-        method: 'get',
-    }).done(response=>{
-        console.log(response)
-    }) 
-}
-
-function btnModificar(usuarioid, name, username, password){
-    $.ajax({
-        url: 'http://localhost:8000/usuarios/'+usuarioid,
-        method: 'put',
-         name : name,
-         username : username,
-         password :  password
-         
-    })
-}
-
-
-
+     function modificar(estudianteid){
+        idestmodificar = estudianteid
+        $.ajax({
+            url: 'http://localhost:8000/estudiantes/'+idestmodificar,
+            method: 'get',
+        }).done(response=>{
+            console.log(response)
+        }) 
+    }
+    
+    function btnModificar(estudianteid, nombres, apellidos){
+        $.ajax({
+            url: 'http://localhost:8000/estudiantes/'+estudianteid,
+            method: 'put',
+             nombres : nombres,
+             apellidos : apellidos
+             
+        })
+    }
 $(document).ready(function(){
     $.ajax({
         method: 'get',//consultar datos
-        url: 'http://localhost:8000/usuarios'
+        url: 'http://localhost:8000/estudiantes'
     }).done((response)=>{
         const dataJson = JSON.parse(response);
-        const usuarios = dataJson.data;
-        const table = document.getElementById('usuariosTb');
+        const estudiantes = dataJson.data;
+        const table = document.getElementById('estudiantesTb');
         const tbody = table.getElementsByTagName('tbody')[0];
         let html = '';
-        usuarios.forEach(usuario => {
+        estudiantes.forEach(estudiante => {
           html +=  '<tr>';
-          html +=   '<td>'+ usuario.name +'</td>';
-          html +=   '<td>'+ usuario.username +'</td>';
+          html +=   '<td>'+ estudiante.codigo +'</td>';
+          html +=   '<td>'+ estudiante.nombres +'</td>';
+          html +=   '<td>'+ estudiante.apellidos +'</td>';
           html +=   '<td>';
-          html +=       '<button onclick="modificar('+usuario.id+')">Modificar</button>';
+          html +=       '<button onclick="modificar('+estudiante.codigo+')">Modificar</button>';
           html +=   '</td>';
           html +=   '<td>';
-          html +=       '<button onclick="btnDelete('+usuario.id+')" >Eliminar</button>';
+          html +=       '<button onclick="btnDelete('+estudiante.codigo+')" >Eliminar</button>';
           html +=   '</td>';
           html +=   '</tr>';  
         });
@@ -89,6 +76,25 @@ $(document).ready(function(){
     }).fail((error)=>{
         console.error(error);    
     });
+
+
+
+
+
+
+
+//
+
+
+
+
+
+
+
+
+
+
+
 
  
 

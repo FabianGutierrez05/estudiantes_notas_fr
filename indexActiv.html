@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion de notas</title>
+</head>
+<body>
+    <header>
+        <h1>GESTION DE NOTAS</h1>
+    </header>
+    <main>
+        <section id ='table'>
+            <table id="actividadesTb">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Descripcion</th>
+                        <th>Nota</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <tr>
+                        </thead>
+                        <tbody></tbody>
+                            <td>
+                                <button onclick="btnModificarNota()">Modificar</button>
+                            </td>
+                            <td>
+                                <button onclick="btnDeleteNota()">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </section>
+                <section>
+                    <form>
+                        <label>
+                            <span>Id: </span>
+                            <input type="number" name="id" maxlength="200" required id="id">
+                        </label>
+                         <label>
+                            <span>Descripcion: </span>
+                            <input type="text" name="descripcion" maxlength="150" required id="descripcion">
+                        </label>
+                         <label>
+                            <span>nota: </span>
+                            <input type="number" name="nota" maxlength="200" required id="nota">
+                        </label>
+                        <label>
+                            <span>Codigo estudiante: </span>
+                            <input type="number" name="codigoEstudiante" maxlength="150" required id="codigoEstudiante">
+                        </label>
+                        <section>
+                            <button onclick="btnRegistroNota()">Guardar</button>
+                        </section>
+                    </form>
+                </section>
+            </main>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" type ="text/javascript"></script>
+        <script src="js/gestionActividades.js"></script>
+</body>
+</html>

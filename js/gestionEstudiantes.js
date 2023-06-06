@@ -72,7 +72,7 @@ $(document).ready(function(){
           html +=   '</td>';
           html +=   '<td>';
           html +=   '<a href="indexActiv.html">Notas</a>';
-          html +=   '</tr>';  
+          html +=   '</tr>';   
         });
         tbody.innerHTML = html;
     }).fail((error)=>{

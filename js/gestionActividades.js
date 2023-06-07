@@ -6,7 +6,7 @@ function btnRegistroNota(){
     post(id.value, descripcion.value, nota.value, codigoEstudiante.value)
     location.reload();
 }
-function btnDeleteNota(codigo){
+function btnDeleteNota(id){
     $.ajax({
         method: 'delete',//consultar datos
         url: 'http://localhost:8000/actividades/'+id
@@ -16,7 +16,7 @@ function btnDeleteNota(codigo){
 }
 function post(id, descripcion, nota, codigoEstudiante) {
     $.ajax({
-        url: 'http://localhost:8000/estudiantes',
+        url: 'http://localhost:8000/actividades',
         method: 'post',//registrar datos
         data: {
              id: id,
@@ -54,13 +54,15 @@ function post(id, descripcion, nota, codigoEstudiante) {
 $(document).ready(function(){
     $.ajax({
         method: 'get',//consultar datos
-        url: 'http://localhost:8000/actividades'
+        url: 'http://localhost:8000/actividades',
     }).done((response)=>{
         const dataJson = JSON.parse(response);
         const actividades = dataJson.data;
         const table = document.getElementById('actividadesTb');
         const tbody = table.getElementsByTagName('tbody')[0];
         let html = '';
+        let sumNotas =0;
+        let denom=0;
         actividades.forEach(actividad => {
           html +=  '<tr>';
           html +=   '<td>'+ actividad.id +'</td>';
@@ -73,9 +75,21 @@ $(document).ready(function(){
           html +=       '<button onclick="btnDeleteNota('+actividad.id+')" >Eliminar</button>';
           html +=   '</td>';
           html +=   '<td>';
-          html +=   '</tr>';   
+          html +=   '</tr>';  
+          sumNotas += parseFloat(actividad.nota);
+          denom += 1; 
         });
+        let promedio = 0;
+        promedio = sumNotas/denom;
+        if(promedio>=3.0){
+            document.getElementById('promedio').innerText='Promedio: '+ promedio + ' Aprobo';
+            promedio=0;
+        }else{
+            document.getElementById('promedio').innerText='Promedio: '+ promedio + ' no aprobo';
+            promedio=0;
+        }
         tbody.innerHTML = html;
+        
     }).fail((error)=>{
         console.error(error);    
     });
@@ -93,6 +107,7 @@ $(document).ready(function(){
      alert(msg);
      
     }); 
+    
     
     
     });

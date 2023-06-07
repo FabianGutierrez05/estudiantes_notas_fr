@@ -75,6 +75,7 @@ $(document).ready(function(){
           html +=   '</tr>';   
         });
         tbody.innerHTML = html;
+        
     }).fail((error)=>{
         console.error(error);    
     });
@@ -118,6 +119,7 @@ $(document).ready(function(){
  alert(msg);
  
 }); 
+
 
 
 });

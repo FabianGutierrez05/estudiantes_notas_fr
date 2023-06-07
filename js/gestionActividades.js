@@ -83,9 +83,11 @@ $(document).ready(function(){
         promedio = sumNotas/denom;
         if(promedio>=3.0){
             document.getElementById('promedio').innerText='Promedio: '+ promedio + ' Aprobo';
+            document.getElementById('promedio').style.color = 'green';
             promedio=0;
         }else{
             document.getElementById('promedio').innerText='Promedio: '+ promedio + ' no aprobo';
+            document.getElementById('promedio').style.color = 'red';
             promedio=0;
         }
         tbody.innerHTML = html;
